@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import ArcReactorSVG from "./ArcReactorSVG";
+import profilePhoto from "../img/photo.jpeg";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -81,23 +82,13 @@ const HeroSection = () => (
             <div className="w-full h-[360px] border border-border mx-auto relative overflow-hidden"
               style={{ background: "linear-gradient(135deg, hsl(210 60% 10% / 0.7), hsl(20 50% 5% / 0.7))" }}>
               <img
-                src="/photo.jpeg"
+                src={profilePhoto}
                 alt="Profile"
                 className="absolute inset-0 w-full h-full object-cover"
                 onError={(e) => {
                   const img = e.currentTarget as HTMLImageElement;
-                  const idx = Number(img.getAttribute("data-idx") || "0");
-                  const candidates = [
-                    "/images/photo.jpeg",
-                    "/profile.jpg",
-                    "/images/profile.jpg",
-                    "/profile.png",
-                    "/images/profile.png",
-                    "/profile.webp",
-                    "/images/profile.webp",
-                  ];
-                  img.setAttribute("data-idx", String(idx + 1));
-                  img.src = candidates[idx] || "/placeholder.svg";
+                  img.onerror = null;
+                  img.src = "/placeholder.svg";
                 }}
               />
               <div className="absolute left-0 right-0 h-[2px] animate-scan-line"
