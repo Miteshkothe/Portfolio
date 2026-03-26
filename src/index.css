@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 80% 3%;
+    --foreground: 197 100% 90%;
+
+    --card: 210 67% 8%;
+    --card-foreground: 197 100% 90%;
+
+    --popover: 210 67% 8%;
+    --popover-foreground: 197 100% 90%;
+
+    --primary: 192 100% 50%;
+    --primary-foreground: 210 80% 3%;
+
+    --secondary: 210 50% 12%;
+    --secondary-foreground: 197 100% 90%;
+
+    --muted: 210 40% 15%;
+    --muted-foreground: 197 50% 55%;
+
+    --accent: 192 100% 50%;
+    --accent-foreground: 210 80% 3%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 192 100% 50% / 0.2;
+    --input: 192 100% 50% / 0.2;
+    --ring: 192 100% 50%;
+
+    --radius: 0rem;
+
+    /* STARK.OS Custom tokens */
+    --arc: 192 100% 50%;
+    --arc-glow: 192 100% 50% / 0.8;
+    --arc-mid: 192 100% 50% / 0.4;
+    --arc-dim: 192 100% 50% / 0.15;
+    --stark-red: 0 70% 45%;
+    --stark-red-bright: 0 100% 63%;
+    --stark-gold: 39 100% 50%;
+    --stark-gold-bright: 51 100% 50%;
+    --stark-gold-dim: 39 100% 50% / 0.2;
+    --bg-deep: 210 80% 3%;
+    --bg-panel: 210 67% 8% / 0.85;
+    --text-stark: 197 100% 90%;
+    --text-dim: 197 100% 90% / 0.5;
+    --border-bright: 192 100% 50% / 0.6;
+    --green-status: 145 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Scanlines overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(192 100% 50% / 0.012) 2px,
+    hsl(192 100% 50% / 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 9000;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, hsl(210 80% 2% / 0.75) 100%);
+  pointer-events: none;
+  z-index: 8999;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--bg-deep));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--arc) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--arc) / 0.5);
+}
+
+/* Font classes */
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+.font-mono-tech {
+  font-family: 'Share Tech Mono', monospace;
+}
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* HUD corners */
+.hud-corner {
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0.5;
+}
+.hud-corner.tl { top: 0; left: 0; border-top: 1px solid hsl(var(--arc)); border-left: 1px solid hsl(var(--arc)); }
+.hud-corner.tr { top: 0; right: 0; border-top: 1px solid hsl(var(--arc)); border-right: 1px solid hsl(var(--arc)); }
+.hud-corner.bl { bottom: 0; left: 0; border-bottom: 1px solid hsl(var(--arc)); border-left: 1px solid hsl(var(--arc)); }
+.hud-corner.br { bottom: 0; right: 0; border-bottom: 1px solid hsl(var(--arc)); border-right: 1px solid hsl(var(--arc)); }
+
+/* Skill bar track */
+.skill-track {
+  height: 6px;
+  background: hsl(var(--arc-dim));
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(to right, hsl(var(--arc-mid)), hsl(var(--arc)));
+  box-shadow: 0 0 12px hsl(var(--arc-mid));
+  transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Clip path buttons */
+.btn-stark {
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+}
+
+/* Panel glow line */
+.panel-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(var(--arc-mid)), transparent);
+}
