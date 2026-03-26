@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import SectionHeader from "./SectionHeader";
-import profilePhoto from "../img/photo.jpeg";
 
 const AboutSection = () => (
   <section id="about" className="py-28 px-[6%] relative"
@@ -21,7 +20,7 @@ const AboutSection = () => (
           <div className="w-[250px] h-[300px] border border-border mx-auto mb-5 relative overflow-hidden"
             style={{ background: "linear-gradient(135deg, hsl(210 60% 10% / 0.7), hsl(20 50% 5% / 0.7))" }}>
             <img
-              src={profilePhoto}
+              src="/photo.jpeg"
               alt="Profile"
               className="absolute inset-0 w-full h-full object-cover"
               onError={(e) => {
